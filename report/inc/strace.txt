@@ -1,0 +1,32 @@
+3035  mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x703968dff000
+3035  mprotect(0x703968e00000, 8388608, PROT_READ|PROT_WRITE) = 0
+3035  clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7039695ff990, parent_tid=0x7039695ff990, exit_signal=0, stack=0x703968dff000, stack_size=0x7fff80, tls=0x7039695ff6c0} => {parent_tid=[3036]}, 88) = 3036
+3035  mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7039685fe000
+3035  mprotect(0x7039685ff000, 8388608, PROT_READ|PROT_WRITE) = 0
+3036  write(1, "thread 1: TID=3036 started\n", 27 <unfinished ...>
+3035  clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x703968dfe990, parent_tid=0x703968dfe990, exit_signal=0, stack=0x7039685fe000, stack_size=0x7fff80, tls=0x703968dfe6c0} <unfinished ...>
+3036  <... write resumed>)              = 27
+3035  <... clone3 resumed> => {parent_tid=[3037]}, 88) = 3037
+3036  write(1, "thread 1: TID=3036 finished, row"..., 37 <unfinished ...>
+3035  futex(0x7039695ff990, FUTEX_WAIT_BITSET|FUTEX_CLOCK_REALTIME, 3036, NULL, FUTEX_BITSET_MATCH_ANY <unfinished ...>
+3036  <... write resumed>)              = 37
+3037  write(1, "thread 2: TID=3037 started\n", 27 <unfinished ...>
+3036  exit(0 <unfinished ...>
+3037  <... write resumed>)              = 27
+3036  <... exit resumed>)               = ?
+3036  +++ exited with 0 +++
+3035  <... futex resumed>)              = 0
+3037  write(1, "thread 2: TID=3037 finished, row"..., 36 <unfinished ...>
+3035  futex(0x703968dfe990, FUTEX_WAIT_BITSET|FUTEX_CLOCK_REALTIME, 3037, NULL, FUTEX_BITSET_MATCH_ANY <unfinished ...>
+3037  <... write resumed>)              = 36
+3037  exit(0)                           = ?
+3037  +++ exited with 0 +++
+3035  <... futex resumed>)              = 0
+3035  write(1, "max triangle:\n", 14)   = 14
+3035  write(1, "  A = #19 (-959.954, -84.597, -8"..., 40) = 40
+3035  write(1, "  B = #41 (520.950, 969.503, 870"..., 38) = 38
+3035  write(1, "  C = #47 (900.208, -894.941, 43"..., 38) = 38
+3035  write(1, "area: 2191468.557596\n", 21) = 21
+3035  write(1, "time: 2.453 ms\n", 15)  = 15
+3035  exit_group(0)                     = ?
+3035  +++ exited with 0 +++

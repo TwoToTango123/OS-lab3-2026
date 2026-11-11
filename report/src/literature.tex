@@ -1,0 +1,44 @@
+\section{Исходная программа}
+
+\begin{center}
+\lstinputlisting[language=C,caption=include/points.h,captionpos=b]{../include/points.h}
+\end{center}
+
+\begin{center}
+\lstinputlisting[language=C,caption=include/search.h,captionpos=b]{../include/search.h}
+\end{center}
+
+\begin{center}
+\lstinputlisting[language=C,caption=src/points.c,captionpos=b]{../src/points.c}
+\end{center}
+
+\begin{center}
+\lstinputlisting[language=C,caption=src/search.c,captionpos=b]{../src/search.c}
+\end{center}
+
+\begin{center}
+\lstinputlisting[language=C,caption=src/main.c,captionpos=b]{../src/main.c}
+\end{center}
+
+\begin{center}
+\lstinputlisting[language={},caption=CMakeLists.txt,captionpos=b]{../CMakeLists.txt}
+\end{center}
+
+\begin{center}
+\lstinputlisting[language=bash,caption=show\_threads.sh,captionpos=b]{../show_threads.sh}
+\end{center}
+
+\begin{center}
+\lstinputlisting[language=bash,caption=bench.sh,captionpos=b]{../bench.sh}
+\end{center}
+
+\section{Strace}
+Запуск:
+\begin{lstlisting}[language={}]
+strace -f -e trace=mmap,mprotect,clone3,futex,write,exit,exit_group ./build/lab3 -t 2 -n 50
+\end{lstlisting}
+Ниже приведена часть вывода начиная с создания первого потока (до этого идёт загрузка программы и библиотек).
+
+Перед каждым \texttt{clone3} glibc выделяет стек потока через \texttt{mmap} (около 8 МБ с флагом \texttt{MAP\_STACK}) и через \texttt{mprotect} делает его доступным, оставляя внизу защитную страницу. В \texttt{clone3} видны флаги \texttt{CLONE\_VM}, \texttt{CLONE\_FILES}, \texttt{CLONE\_SIGHAND}, \texttt{CLONE\_THREAD}: новый поток работает в той же памяти и с теми же дескрипторами, а результатом вызова является его TID. Затем главный поток вызывает \texttt{futex} с \texttt{FUTEX\_WAIT} --- это \texttt{pthread\_join}, он спит, пока поток не завершится. Поток выводит свои сообщения (\texttt{write}) и завершается вызовом \texttt{exit}, после чего ядро будит главный поток. В конце главный поток выводит результат и завершает процесс через \texttt{exit\_group}. Вызовы \texttt{pthread\_mutex\_lock} в strace не видны, потому что свободный мьютекс захватывается атомарной операцией без системного вызова.
+
+\lstinputlisting[language={}]{inc/strace.txt}

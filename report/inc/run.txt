@@ -1,0 +1,15 @@
+main: PID=3044, points=1000, max threads=4
+thread 1: TID=3045 started
+thread 3: TID=3047 started
+thread 2: TID=3046 started
+thread 4: TID=3048 started
+thread 4: TID=3048 finished, rows=254
+thread 1: TID=3045 finished, rows=255
+thread 3: TID=3047 finished, rows=249
+thread 2: TID=3046 finished, rows=240
+max triangle:
+  A = #724 (-942.409, -941.716, -936.545)
+  B = #844 (-770.151, 901.607, 954.749)
+  C = #980 (928.864, 897.785, -925.869)
+area: 2927970.404320
+time: 48.666 ms

@@ -1,0 +1,26 @@
+main: PID=3053, points=3000, max threads=4
+thread 1: TID=3055 started
+thread 2: TID=3056 started
+thread 3: TID=3057 started
+thread 4: TID=3058 started
+----- ps -L -p 3053 -----
+    PID     LWP NLWP %CPU STAT COMMAND
+   3053    3053    5  0.0 Sl+  lab3
+   3053    3055    5  100 Rl+  lab3
+   3053    3056    5  100 Rl+  lab3
+   3053    3057    5  100 Rl+  lab3
+   3053    3058    5  100 Rl+  lab3
+----- /proc/3053/status -----
+Threads:	5
+----- /proc/3053/task -----
+3053  3055  3056  3057	3058
+thread 1: TID=3055 finished, rows=753
+thread 3: TID=3057 finished, rows=755
+thread 4: TID=3058 finished, rows=747
+thread 2: TID=3056 finished, rows=743
+max triangle:
+  A = #1237 (997.050, 954.455, 795.794)
+  B = #1250 (-934.750, 923.191, -866.677)
+  C = #1980 (-915.805, -964.360, 988.027)
+area: 3005298.397822
+time: 1285.164 ms
